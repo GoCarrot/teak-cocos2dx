@@ -16,6 +16,11 @@
         <meta-data android:name="android.app.lib_name"
                    android:value="MyGame" />
 
+        <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713"/>
+
         <activity
             android:name="org.cocos2dx.cpp.AppActivity"
             android:screenOrientation="landscape"
@@ -29,7 +34,28 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <!-- Auto-initialize Teak -->
+            <meta-data android:name="io.teak.sdk.initialize" android:value="true"/>
+
+            <!-- Teak Deep Linking -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http" android:host="@string/teak_host_url" />
+                <data android:scheme="https" android:host="@string/teak_host_url" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="@string/teak_scheme_id" android:host="*" />
+            </intent-filter>
         </activity>
+
+        <!-- Teak 3.2.0 trace log mode, for debugging -->
+        <meta-data android:name="io_teak_log_trace" android:value="true" />
     </application>
 
 </manifest>

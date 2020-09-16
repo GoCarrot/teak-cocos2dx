@@ -118,7 +118,7 @@ bool HelloWorld::init()
     }
 
     // Teak
-    Teak::getInstance()->identifyUser("asdf");
+    Teak::getInstance()->identifyUser("cocos-test");
 
     return true;
 }

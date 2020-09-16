@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="io_teak_app_id">613659812345256</string>
+  <string name="io_teak_api_key">41ff00cfd4cb85702e265aa3d5ab7858</string>
+  <string name="io_teak_gcm_sender_id">12126273415</string>
+  <string name="io_teak_firebase_app_id">1:12126273415:android:102329156b15bf0c</string>
+  <string name="io_teak_firebase_api_key">AIzaSyA_lmYrQPyGS8QQtCKk05-YRU92zWcIZbQ</string>
+  <string name="io_teak_firebase_project_id">teak-sdk-test</string>
+  <string name="teak_host_url">teak-dev.playw.it</string>
+  <string name="teak_scheme_id">teak613659812345256</string>
+
+  <!-- TODO: include these automatically -->
+  <string name="io_teak_wrapper_sdk_name">cocos2dx</string>
+  <string name="io_teak_wrapper_sdk_version">alpha</string>
+</resources>

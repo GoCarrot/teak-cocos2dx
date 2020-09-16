@@ -29,6 +29,8 @@
 #import "AppDelegate.h"
 #import "RootViewController.h"
 
+#import <UserNotifications/UserNotifications.h>
+
 @implementation AppController
 
 @synthesize window;
@@ -79,6 +81,32 @@ static AppDelegate s_sharedApplication;
     
     //run the cocos2d-x game scene
     app->run();
+  
+    // The following code registers for push notifications in both an iOS 8 and iOS 9+ friendly way
+    if (NSClassFromString(@"UNUserNotificationCenter") != nil) {
+      UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+      UNAuthorizationOptions authOptions = UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge;
+      if (@available(iOS 12.0, *)) {
+        //authOptions |= UNAuthorizationOptionProvisional;
+      }
+      [center requestAuthorizationWithOptions:authOptions
+                            completionHandler:^(BOOL granted, NSError* _Nullable error) {
+                              if (granted) {
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                  [application registerForRemoteNotifications];
+                                });
+                              }
+                            }];
+    } else if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+      UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil];
+      [application registerUserNotificationSettings:settings];
+    } else {
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+      UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound;
+      [application registerForRemoteNotificationTypes:myTypes];
+  #pragma clang diagnostic pop
+    }
 
     return YES;
 }
@@ -143,5 +171,13 @@ static AppDelegate s_sharedApplication;
 }
 #endif
 
+- (void)application:(UIApplication*)application didRegisterUserNotificationSettings:(UIUserNotificationSettings*)notificationSettings {
+  // Register to receive notifications
+  [application registerForRemoteNotifications];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+  NSLog(@"Did you fuck up? %@", error);
+}
 
 @end
