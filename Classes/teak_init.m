@@ -25,6 +25,7 @@ extern NSString* const TeakNotificationAppLaunch;
 extern NSString* const TeakOnReward;
 extern NSString* const TeakForegroundNotification;
 extern NSString* const TeakAdditionalData;
+extern NSString* const TeakLaunchedFromLink;
 
 extern NSDictionary* TeakWrapperSDK;
 extern NSDictionary* TeakXcodeVersion;
@@ -104,6 +105,13 @@ static void teak_init()
                                                       queue:nil
                                                  usingBlock:^(NSNotification* notification) {
                                                     Teak_Cocos2dx_NSSendMessage(notification.userInfo, "TeakAdditionalData", false);
+                                                 }];
+
+   [[NSNotificationCenter defaultCenter] addObserverForName:TeakLaunchedFromLink
+                                                     object:nil
+                                                      queue:nil
+                                                 usingBlock:^(NSNotification* notification) {
+                                                    teakOnJsonEvent(notification.userInfo, "TeakLaunchedFromLink", false);
                                                  }];
 }
 #endif // (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
