@@ -4,7 +4,7 @@ Android
 * And/Or... Add Teak.cpp and Teak.h to CMakeLists (if you use Cmake)
 
 * Note: Look for `Teak.Integration` log errors
-* Add teak.aar to `proj.android/app/build.gradle`
+* Add teak.aar to `proj.android/app/build.gradle` (http://sdks.teakcdn.com/android/teak.aar)
 * Add `teak.xml` with configuration variable to `proj.android/app/res/values/`
 * Add `<meta-data android:name="io.teak.sdk.initialize" android:value="true"/>` to your main `<activity>`
 * Add Teak dependencies to `proj.android/app/build.gradle`
@@ -27,8 +27,8 @@ iOS
 * Add Teak.cpp and Teak.h to the Xcode Project
 * And/Or... Add Teak.cpp and Teak.h to CMakeLists (if you use Cmake)
 
-* Add Teak.framework to the `Link Binary With Libraries` in `Build Phases`
-* Add TeakResources.bundle to the `Copy Bundle Resources` in `Build Phases`
+* Add Teak.framework to the `Link Binary With Libraries` in `Build Phases` (http://sdks.teakcdn.com/ios/Teak.framework.zip)
+* Add TeakResources.bundle to the `Copy Bundle Resources` in `Build Phases` (http://sdks.teakcdn.com/ios/TeakResources.bundle.zip)
 * Add Teak dependencies
 
     UserNotifications.framework
